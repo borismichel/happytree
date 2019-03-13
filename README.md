@@ -1,6 +1,6 @@
 Little applet to create random fractal trees that spawn leaves which subsequently drop using P5.js 
 
-To try unpack and run `index.html`
+To try unpack and run `index.html` - all the leaves are gone? Don't worry, press F5!
 
 There are a handful of properties:
 
