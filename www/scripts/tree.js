@@ -52,6 +52,8 @@ class Leaf {
         this.greened = false;
         this.allGreened = false;
 
+        this.greenLife = 200;
+
         //scale y speed magnitude
         this.size = random(2, 5);
 
@@ -77,6 +79,9 @@ class Leaf {
     }
 
     update(time) {   
+        if (allGreened) {
+            this.greenLife--;
+        }
         if(random(1)>.9) {
             if(!this.blossomed){ //blossom
                 if (this.width<this.finalWidth) {
@@ -92,8 +97,8 @@ class Leaf {
             if(!this.greened&&this.allBlossomed&&!this.allGreened) { //green
                 this.greened = true;
             }
-            if(!this.dead&&this.allBlossomed&&this.allGreened) { //green
-                this.dead = true;
+            if(!this.dead&&this.allBlossomed&&this.allGreened&&this.greenLife<=0) { //green time
+                this.dead
             }
             if(this.dead&&this.posY < height -5) { //fall
                 let w = 10; // angular speed
