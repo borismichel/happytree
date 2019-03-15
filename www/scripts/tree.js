@@ -79,7 +79,7 @@ class Leaf {
     }
 
     update(time) {   
-        if (allGreened) {
+        if (this.allGreened) {
             this.greenLife--;
         }
         if(random(1)>.9) {
