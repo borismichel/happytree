@@ -98,7 +98,7 @@ class Leaf {
                 this.greened = true;
             }
             if(!this.dead&&this.allBlossomed&&this.allGreened&&this.greenLife<=0) { //green time
-                this.dead
+                this.dead = true;
             }
             if(this.dead&&this.posY < height -5) { //fall
                 let w = 10; // angular speed
