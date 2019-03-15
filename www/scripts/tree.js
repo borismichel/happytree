@@ -35,11 +35,23 @@ class Leaf {
         this.posY = v.y;
 
         //get pseudo ovals
-        this.width=5+random(5);
-        this.height=5+random(5);
-
+        this.finalWidth=5+random(5);
+        this.finalHeight=5+random(5);
+        this.width= 0;
+        this.height= 0;
+        
         this.initialangle = random(0, 2 * PI);
+
+        //State Props
         this.dead= false;
+        this.allDead = false
+        
+        this.blossomed = false;
+        this.allBlossomed = false;
+
+        this.greened = false;
+        this.allGreened = false;
+
         //scale y speed magnitude
         this.size = random(2, 5);
 
@@ -48,32 +60,70 @@ class Leaf {
         this.redR= 120+random(100);
         this.redG= 80+random(80);
         this.redB= 30+random(50);
+        this.pinkR= 235+random(20);
+        this.pinkG= 190+random(15);
+        this.pinkB= 210+random(30);
     }
 
     show() {
         if (this.dead) {
             fill(this.redR, this.redG, this.redB);
-        } else {
+        } else if (this.greened) {
             fill(10, this.green, 60)
+        } else {            
+            fill(this.pinkR, this.pinkG, this.pinkB);
         }
         ellipse(this.posX, this.posY, this.width, this.height); 
     }
 
     update(time) {   
-        if(random(100)>99.2) {
-            this.dead = true;
-        }
-        if(this.dead&&this.posY < height -5) {
-            fill(255,123,41)
-            let w = 10; // angular speed
-            let angle = w * time + this.initialangle;
-            if(3 + this.posX + sin(angle)>width) {
-                this.posX = width-5;
-            } else {
-                this.posX = 1 + this.posX + 1.2*sin(angle);
+        if(random(1)>.9) {
+            if(!this.blossomed){ //blossom
+                if (this.width<this.finalWidth) {
+                    this.width++;
+                }
+                if (this.height<this.finalHeight) {
+                    this.height++;
+                }
+                if(this.height>=this.finalHeight&&this.width>=this.finalWidth) {
+                    this.blossomed=true;
+                }
             }
-            // different size snowflakes fall at slightly different y speeds
-            this.posY += pow(this.size, 0.5);
+            if(!this.greened&&this.allBlossomed&&!this.allGreened) { //green
+                this.greened = true;
+            }
+            if(!this.dead&&this.allBlossomed&&this.allGreened) { //green
+                this.dead = true;
+            }
+            if(this.dead&&this.posY < height -5) { //fall
+                let w = 10; // angular speed
+                let angle = w * time + this.initialangle;
+                if(3 + this.posX + sin(angle)>width) {
+                    this.posX = width-5;
+                } else {
+                    this.posX = 1 + this.posX + 1.2*sin(angle);
+                }
+                // different size snowflakes fall at slightly different y speeds
+                this.posY += pow(this.size, 0.5);
+            }
+        }
+    }
+
+    updateBlossomed() {
+        if(!this.allBlossomed){
+            this.allBlossomed = true;
+        }    
+    }
+
+    updateGreened() {
+        if(!this.allGreened){
+            this.allGreened = true;
+        }    
+    }
+
+    startFalling() {
+        if(!this.dead){
+            this.dead = true;
         }
     }
 }
