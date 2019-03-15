@@ -1,0 +1,23 @@
+{
+  "name": "happytree",
+  "version": "1.0.0",
+  "description": "Little applet to create random fractal trees that spawn leaves which subsequently drop using P5.js",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/borismichel/happytree.git"
+  },
+  "author": "Boris Michel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/borismichel/happytree/issues"
+  },
+  "homepage": "https://github.com/borismichel/happytree#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
