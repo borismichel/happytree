@@ -20,7 +20,7 @@ class Branch {
         v.setMag(1/this.iter*80*random(1.5));
         v.add(this.end)
         var nb = new Branch(this.end, v, this.iter+1)
-        if (this.iter>4&&random(1)>0.55) {
+        if (this.iter>4&&random(1)>0.4) {
             //start leafing from Generation 4
             var leaf = new Leaf(v);
             leaves.push(new Leaf(v));
