@@ -19,7 +19,6 @@ function draw() {
     let leavesDone = 0;
     for (var i = 0; i < leaves.length; i++) {
         leaves[i].update(t)
-        leaves[i].show()
         if(!leaves[i].allBlossomed) { //Check if already blossomed
             leavesDone = (leaves[i].blossomed==false) ? leavesDone : leavesDone +1;
             if (leavesDone==leaves.length) {
@@ -29,7 +28,7 @@ function draw() {
                 }
             };
         } 
-        if(!leaves[i].allGreened) { //Check if already blossomed
+        else if(!leaves[i].allGreened) { //Check if already Greened
             leavesDone = (leaves[i].greened==false) ? leavesDone : leavesDone +1;
             if (leavesDone==leaves.length) {
                 for (var j = 0; j < leaves.length; j++) {
@@ -39,6 +38,9 @@ function draw() {
             };
         } 
     };
+    for (var i = 0; i < leaves.length; i++) {
+        leaves[i].show();
+    }
 }
 
 function growTree(cycle) {
