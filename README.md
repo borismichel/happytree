@@ -1,4 +1,4 @@
-#HappyTree
+# HappyTree
 
 Little applet to create random fractal trees that spawn blossoms, then leaves which subsequently drop using P5.js 
 
