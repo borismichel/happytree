@@ -8,7 +8,7 @@ You can always demo the current build at **http://myhappytree.herokuapp.com**.
 
 I have included an express web server to serve the ..umm...website(?) on port 3320
 
-If you want to use this as well, make sure oyu have node.js installed and follow these steps:
+If you want to use this as well, make sure you have node.js installed and follow these steps:
 
 1) clone/download the repo
 2) unpack and open the project folder in a shell
