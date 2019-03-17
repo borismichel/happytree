@@ -1,4 +1,4 @@
-class Branch {
+class Branch { //Tree object
     constructor(start, end, iter) {
         this.start = start;
         this.end = end;
@@ -10,7 +10,7 @@ class Branch {
 
     show() {
         var newStroke = (15-this.iter*3 < 1) ? 1 : 15-this.iter*3;
-        strokeWeight(newStroke);
+        strokeWeight(newStroke); //shrink while branching out
         line(this.start.x, this.start.y, this.end.x, this.end.y);
     }
 
@@ -20,7 +20,7 @@ class Branch {
         v.setMag(1/this.iter*80*random(1.5));
         v.add(this.end)
         var nb = new Branch(this.end, v, this.iter+1)
-        if (this.iter>4&&random(1)>0.52) {
+        if (this.iter>4&&random(1)>0.52) { //only 48% of branches in the target generations spawn leaves
             //start leafing from Generation 4
             var leaf = new Leaf(v);
             leaves.push(new Leaf(v));
@@ -29,7 +29,7 @@ class Branch {
     }
 }
 
-class Leaf {
+class Leaf { //Leaf object... you might have guessed...
     constructor(v) {
         //get original end
         this.v = v;
@@ -60,16 +60,22 @@ class Leaf {
         this.size = random(2, 5);
 
         //some Color business
+            // green leaves
         this.green= 200-random(100);
+
+        //fallen leaf brown
         this.redR= 120+random(100);
         this.redG= 80+random(80);
         this.redB= 30+random(50);
+
+        //pink blossoms
         this.pinkR= 235+random(20);
         this.pinkG= 190+random(15);
         this.pinkB= 210+random(30);
     }
 
     show() {
+        //sho ellipses with state colors
         if (this.dead) {
             fill(this.redR, this.redG, this.redB);
         } else if (this.greened) {
@@ -82,10 +88,10 @@ class Leaf {
 
     update(time) {   
          // regular Uodates
-        if (this.allGreened&&this.greenLife>0) {
+        if (this.allGreened&&this.greenLife>0) { //when all greened begin countdown to fall
             this.greenLife--;
         }
-        if(!this.blossomed&&random(1)>.9){ //blossom
+        if(!this.blossomed&&random(1)>.9){ //blossom randomly
             if (this.width<this.finalWidth) {
                 this.width++;
             }
@@ -96,21 +102,20 @@ class Leaf {
                 this.blossomed=true;
             }
         }
-        else if(!this.greened&&this.allBlossomed&&!this.allGreened&&random(1)>.9) { //green
+        else if(!this.greened&&this.allBlossomed&&!this.allGreened&&random(1)>.9) { //green randomly
             this.greened = true;
         }
-        else if(!this.dead&&this.allBlossomed&&this.allGreened&&this.greenLife<=0&&random(1)>0.99) { //green time
+        else if(!this.dead&&this.allBlossomed&&this.allGreened&&this.greenLife<=0&&random(1)>0.99) { //green time is up, start randomly falling
             this.dead = true;
         }
-        else if(this.dead&&this.posY < height -5) { //fall
-            let w = 10; // angular speed
+        else if(this.dead&&this.posY < height -5) { //fall x sinoid, y variable linear speed
+            let w = 10; 
             let angle = w * time + this.initialangle;
             if(3 + this.posX + sin(angle)>width) {
                 this.posX = width-5;
             } else {
                 this.posX = 1 + this.posX + 1.2*sin(angle);
             }
-            // different size snowflakes fall at slightly different y speeds
             this.posY += pow(this.size, 0.5);
         }
     }

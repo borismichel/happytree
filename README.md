@@ -1,12 +1,17 @@
-Little applet to create random fractal trees that spawn leaves which subsequently drop using P5.js 
+#HappyTree
 
-To try unpack and run `index.html` - all the leaves are gone? Don't worry, press F5!
+Little applet to create random fractal trees that spawn blossoms, then leaves which subsequently drop using P5.js 
 
-There are a handful of properties:
+To enjoy: unpack and run `/www/index.html` - all the leaves are gone? Don't worry, press F5!
 
-`growTree(x)` function:
-- Branches have a 0.1% chance to terminate before reaching full maturity
-- growTree parameter x sets number of branching iterations (exponential growth with 3^x)
+You can always demo the current build at **http://myhappytree.herokuapp.com**.
 
-Leaves
-- Leaves have a 0.8% chance to start dropping on update(each render event) can be adjusted in update method of leaf object
+I have included an express web server to serve the ..umm...website(?) on port 3320
+
+If you want to use this as well, make sure oyu have node.js installed and follow these steps:
+
+1) clone/download the repo
+2) unpack and open the project folder in a shell
+3) run `npm install`to download all dependencies (express, essentially)
+4) when done, run `npm start` in the same shell
+5) open a browser and navigate to `http://localhost:3320`

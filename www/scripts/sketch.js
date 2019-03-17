@@ -5,13 +5,13 @@ function setup() {
     createCanvas(640, 400);
     let v1 = createVector(width/2, height)
     let v2 = createVector(width/2, height-100)
-    tree[0] = new Branch(v1, v2, 0);
-    growTree(9);
+    tree[0] = new Branch(v1, v2, 0); //initialise tree
+    growTree(9); //grow to n iterations
 }
 
 function draw() {
     background(255);
-    let t = frameCount / 60; // update time
+    let t = frameCount / 60; // update time for sin function
     stroke(132, 80, 46);
     for (var i = 0; i < tree.length; i++) {
         tree[i].show()
@@ -23,7 +23,6 @@ function draw() {
             leavesDone = (leaves[i].blossomed==false) ? leavesDone : leavesDone +1;
             if (leavesDone==leaves.length) {
                 for (var j = 0; j < leaves.length; j++) {
-                    console.log('All Done!')
                     leaves[j].updateBlossomed();
                 }
             };
@@ -32,7 +31,6 @@ function draw() {
             leavesDone = (leaves[i].greened==false) ? leavesDone : leavesDone +1;
             if (leavesDone==leaves.length) {
                 for (var j = 0; j < leaves.length; j++) {
-                    console.log('All Done!')
                     leaves[j].updateGreened();
                 }
             };
@@ -46,7 +44,7 @@ function draw() {
 function growTree(cycle) {
     for (i=0; i < cycle; i++){
         for (j=tree.length-1; j >= 0; j--) {
-            if(!tree[j].finsihed) {
+            if(!tree[j].finsihed) { //When growing, randomly terminate some branches
                 if(random(1)>0.999) { break }
                 tree.push(tree[j].grow(PI / 4));
                 if(random(1)>0.999) { break }
