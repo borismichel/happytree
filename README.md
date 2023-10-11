@@ -4,8 +4,6 @@ Little applet to create random fractal trees that spawn blossoms, then leaves wh
 
 To enjoy: unpack and run `/www/index.html` - all the leaves are gone? Don't worry, press F5!
 
-You can always demo the current build at **http://myhappytree.herokuapp.com**.
-
 I have included an express web server to serve the ..umm...website(?) on port 3320
 
 If you want to use this as well, make sure you have node.js installed and follow these steps:
